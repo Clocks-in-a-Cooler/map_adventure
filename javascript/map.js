@@ -11,14 +11,12 @@ function Map(string, width, height) {
     }
 
     this.special_tiles = []; //for special tiles
-    this.map_objects = [];
 
     this.player_x = null;
     this.player_y = null;
 
     for (var i = 0; i < width * height; i = i + 1) {
         this.special_tiles[i] = null; //start out with no special tiles, for now.
-        this.map_objects[i] = null; //start out with no objects on the map
     }
 }
 
@@ -99,21 +97,6 @@ Map.prototype.get_special_tile = function(width, height) {
 Map.prototype.remove_special_tile = function(width, height) {
     var special_tile_pos = this.get_tile_pos(width, height);
     this.special_tiles[special_tile_pos] = null; //set it to null
-};
-
-Map.prototype.set_map_object = function(width, height, new_map_object) {
-    var map_object_pos = this.get_tile_pos(width, height);
-    this.map_objects[map_object_pos] = new_map_object;
-};
-
-Map.prototype.get_map_object = function(width, height) {
-    var map_object_pos = this.get_tile_pos(width, height);
-    return this.map_objects[map_object_pos];
-};
-
-Map.prototype.remove_map_object = function(width, height) {
-    var map_object_pos = this.get_tile_pos(width, height);
-    this.map_objects[map_object_pos] = null; //set it to null
 };
 
 Map.prototype.place_player = function(x, y) {
