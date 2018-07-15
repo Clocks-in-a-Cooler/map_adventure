@@ -1,7 +1,7 @@
 /* for the styles on the html itself */
 
 body {
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: fantasy, "Arial", sans-serif;
     font-size: 16pt;
 }
 
@@ -20,20 +20,36 @@ div#map_panel {
 }
 
 div#messages {
+    /* the <div> containing all of the messages */
     position: absolute;
     top: 20px;
     left: 0px;
     width: 200px;
     height: 700px;
+
+    overflow: hidden;
+}
+
+div.message {
+    /* an individual message, can be seen in the messages <div> */
+    /* background-color: aqua; for testing purposes */
+    font-size: 14pt;
+
+    display: block;
+    margin: 10px;
+    padding: 10px;
+
     overflow: hidden;
 }
 
 button {
     background-color: white;
+
     border-style: solid;
     border-width: 1px;
     border-color: black;
     width: 150px;
     height: 50px;
+
     overflow: hidden;
 }

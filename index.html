@@ -14,11 +14,24 @@
 
         <div id=game>
             <div id="messages">
-                <button onclick="alert('something has happened');">something will happen!</button>
+                <!-- <button onclick="alert('something has happened');">something will happen!</button> -->
             </div>
             <div id="map_panel">
-                <p>Use the developer console (CTRL SHIFT I) or Firefox's Scratchpad to interact and test the scripts.</p>
+                <p>Use the developer console (CTRL SHIFT I) or Firefox's Scratchpad to test and interact with the scripts.</p>
+                <p>Alternatively, click the button below.</p>
+                <br/>
+                <button onclick="Engine.notify('something has happened.');">something will happen</button>
             </div>
         </div>
+
+        <script>
+                /* references of different parts of the page, for the engine */
+                var message_panel = document.getElementById("messages");
+                var map_panel = document.getElementById("map_panel");
+    
+                function output_to_map(string) {
+                    map_panel.value = string;
+                }
+        </script>
     </body>
 </html>
