@@ -16,6 +16,13 @@
             <div id="messages">
                 <!-- <button onclick="alert('something has happened');">something will happen!</button> -->
             </div>
+            
+            <div id="inventory">
+                <!-- this div is for displaying the inventory 
+                    individual items will be displayed each as a <div class="inventory_item"
+                    this will probably be handled by a seperate module. (fun!) -->
+            </div>
+            
             <div id="map_panel">
                 <p>Use the developer console (CTRL SHIFT I) or Firefox's Scratchpad to test and interact with the scripts.</p>
                 <p>Alternatively, click the button below.</p>
@@ -26,6 +33,7 @@
 
         <script>
                 /* references of different parts of the page, for the engine */
+                var inventory_panel = document.getElementById("inventory");
                 var message_panel = document.getElementById("messages");
                 var map_panel = document.getElementById("map_panel");
     
