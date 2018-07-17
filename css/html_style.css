@@ -26,6 +26,7 @@ div#inventory {
 
 div.inventory_item {
     display: inline;
+    overflow: hidden;
     
     border-color: black;
     border-style: solid;
@@ -40,6 +41,10 @@ div#map_panel {
     width: 700px;
     height: 700px;
     overflow: hidden;
+   
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
 }
 
 div#messages {
