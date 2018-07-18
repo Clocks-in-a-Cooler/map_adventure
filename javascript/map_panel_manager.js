@@ -7,7 +7,7 @@ var map_panel_manager = {
     },
 
     display_map: function(map) {
-        var rows = map.stringify.split('\n');
+        var rows = current_map.stringify().split('\n');
 
         var rowsleft = 0;
         
