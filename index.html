@@ -16,6 +16,13 @@
         <div id=game>
             <div id="messages">
             </div>
+            
+            <div id="inventory">
+                <!-- this div is for displaying the inventory 
+                    individual items will be displayed each as a <div class="inventory_item"
+                    this will probably be handled by a seperate module. (fun!) -->
+            </div>
+            
             <div id="map_panel">
                 <button onclick="Engine.notify('something has happened.');">something will happen</button>
             </div>
@@ -24,6 +31,7 @@
         <script>
                 /* references of different parts of the page, for the engine */
                 var game_panel = document.getElementById("game");
+                var inventory_panel = document.getElementById("inventory");
                 var message_panel = document.getElementById("messages");
                 var map_panel = document.getElementById("map_panel");
 
