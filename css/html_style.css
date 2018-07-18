@@ -48,7 +48,8 @@ div#map_panel {
     letter-spacing: 1px;
 
     font-family: "Courier New", monospace;
-    font-size: 14pt;
+    font-size: 11pt;
+    color: #999999;
 
     overflow: hidden;
    
