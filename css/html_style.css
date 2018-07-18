@@ -1,8 +1,8 @@
 /* for the styles on the html itself */
 
 body {
-    font-family: fantasy, "Arial", sans-serif;
-    font-size: 16pt;
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 14pt;
 }
 
 div#game {
@@ -16,6 +16,13 @@ div#map_panel {
     left: 220px;
     width: 700px;
     height: 700px;
+
+    line-height: 10px;
+    letter-spacing: 1px;
+
+    font-family: "Courier New", monospace;
+    font-size: 14pt;
+
     overflow: hidden;
 }
 

@@ -6,6 +6,10 @@ var MAP_TILES = { //subject to change!
     PATH: "_",
     BRIDGE: "-",
 
+    ROCK: ":",
+    ORE: "O",
+    MINE_ENTRANCE: "A",
+
     SPECIAL: "X", //to catch the player's attention. IMMEDIATELY!!!!!!!
     MYSTERY: "?", //in case you need it
 

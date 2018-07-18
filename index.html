@@ -9,29 +9,34 @@
         <!-- scripts, in alphabetical order -->
         <script src="javascript/character.js"></script>
         <script src="javascript/engine.js"></script>
+        <script src="javascript/generate_map.js"></script>
         <script src="javascript/map.js"></script>
         <script src="javascript/map_tiles.js"></script>
 
         <div id=game>
             <div id="messages">
-                <!-- <button onclick="alert('something has happened');">something will happen!</button> -->
             </div>
             <div id="map_panel">
-                <p>Use the developer console (CTRL SHIFT I) or Firefox's Scratchpad to test and interact with the scripts.</p>
-                <p>Alternatively, click the button below.</p>
-                <br/>
                 <button onclick="Engine.notify('something has happened.');">something will happen</button>
             </div>
         </div>
 
         <script>
                 /* references of different parts of the page, for the engine */
+                var game_panel = document.getElementById("game");
                 var message_panel = document.getElementById("messages");
                 var map_panel = document.getElementById("map_panel");
-    
-                function output_to_map(string) {
-                    map_panel.value = string;
+
+                function random_number(start, end) {
+                    var multiplier = Math.abs((start - end));
+                    var adder = Math.min(start, end);
+                    
+                    return Math.floor(Math.random() * multiplier + adder);
                 }
+
+                Engine.notify("Alternatively, click the button.");
+                Engine.notify("Use the developer console (CTRL + SHIFT + I) or Firefox's Scratchpad to interact with and test the scripts.")
+
         </script>
     </body>
 </html>
