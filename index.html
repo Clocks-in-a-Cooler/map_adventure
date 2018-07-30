@@ -42,6 +42,23 @@
                     
                     return Math.floor(Math.random() * multiplier + adder);
                 }
+                
+                function create_element(tag, attributes) {
+                    var element = document.createElement(tag);
+
+                    var att;
+
+                    while (attributes.length > 0) {
+                        var att_obj = attributes.shift();
+
+                        att = document.createAttribute(att_obj.name);
+                        att.value = att_obj.value;
+
+                        element.setAttributeNode(att);
+                    }
+
+                    return element;
+                }
 
                 Engine.notify("Alternatively, click the button.");
                 Engine.notify("Use the developer console (CTRL + SHIFT + I) or Firefox's Scratchpad to interact with and test the scripts.")

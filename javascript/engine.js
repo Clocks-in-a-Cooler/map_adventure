@@ -7,6 +7,21 @@ var Engine = {
         }
     },
 
+    create_scene: function(scene_obj) {
+        //create a window, somehow.
+        //I'm an idiot, remember?
+
+        this.log("creating scene " + scene_obj['title'] + "...");
+        var scene = document.createElement('div');
+
+        //set it to 'scene' class
+        var class_att = document.createAttribute('class');
+        class_att.value = 'scene';
+        scene.setAttributeNode(class_att);
+
+        //finish
+    },
+
     generate_save_code: function(game) {
         return btoa(JSON.stringify(game));
     },
@@ -34,5 +49,9 @@ var Engine = {
         } catch (err) {
             return null;
         }
+    },
+
+    render_tooltip: function(node, text) {
+        //finish the tooltip renderer
     },
 }
