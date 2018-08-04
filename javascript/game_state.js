@@ -29,7 +29,10 @@ var game_state_manager = {
     },
 
     start_game: function() {
-        this.maps['prison mine map'] = generate_prison_map(75, 75);
+        this.maps['prison mine map'] = generate_prison_map(70, 70);
+        MPM.display_map(this.maps['prison mine map']);
+
+        Engine.notify('prison mine.');
     },
 };
 
