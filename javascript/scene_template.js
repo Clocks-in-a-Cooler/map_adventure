@@ -1,6 +1,9 @@
 //a template for scenes, not really for use. use as a guide
 //based on ADR's way of doing it
 //probably the a functional prgrammer's worst nightmare: object-ception!
+//it's also my worst nightmare! see scene_handler.js for details!
+
+//remember to use Object.getOwnPropertyNames() to access the button names
 
 var scene_template = {
     'title': "scene template title",
@@ -16,12 +19,12 @@ var scene_template = {
 
                 'next!': {
                     'tooltip': "proceed to the next scene.",
-                    'next_scene': {'scene_one': 1},
+                    'next_scene': {'scene_1': 1},
                 },
             },
         },
 
-        'scene_one': {
+        'scene_1': {
             'text': 'this is technically the second scene.\nI\'m an idiot.',
             'buttons': {
                 'end it now': {
@@ -36,6 +39,24 @@ var scene_template = {
             },
         },
 
-        //...etc... gotta make scenes 2 and 3.
+        'scene_2': {
+            'text': 'scene 2. you had a 40% chance of getting this one.',
+            'buttons': {
+                'end; I am running out of scenes!!': {
+                    'tooltip': 'end the demo, because I can\'t make anymore scenes!',
+                    'next_scene': 'end',
+                },
+            },
+        },
+
+        'scene_3': {
+            'text': 'scene 3! you had a 60% chance of getting this one.',
+            'buttons': {
+                'end! finally!': {
+                    'tooltip': 'end the demo. NOW.',
+                    'next_scene': 'end',
+                },
+            },
+        },
     },
 };
