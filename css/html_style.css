@@ -2,7 +2,7 @@
 
 body {
     font-family: "Helvetica", "Arial", sans-serif;
-    font-size: 14pt;
+    font-size: 12pt;
 }
 
 p {
@@ -36,12 +36,24 @@ div#inventory {
 }
 
 div.inventory_item {
-    display: inline;
+    display: inline-block;
+    padding: 5px;
     overflow: hidden;
     
     border-color: black;
     border-style: solid;
     border-width: 1px;
+}
+
+div#links {
+    text-align: right;
+    text-decoration: underline;
+
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    margin: 0px;
+    padding: 10px;
 }
 
 div#map_panel {
@@ -129,5 +141,24 @@ button {
 }
 
 button:hover {
-    font-style: underline;
+    text-decoration: underline;
+}
+
+a:link {
+    text-decoration: none;
+    color: #999999;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #aaaaaa;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
+    color: black;
 }
