@@ -105,28 +105,52 @@ Map.prototype.place_player = function(x, y) {
 }
 
 Map.prototype.move_up = function() {
-    this.player_y = this.player_y - 1;
+    this.player_y = Math.max(this.player_y - 1, 0);
+
+    if (this.get_special_tile(this.player_x, this.player_y)) {
+        this.get_special_tile(this.player_x, this.player_y).action();
+    }
 }
 
 Map.prototype.move_down = function() {
-    this.player_y = this.player_y + 1;
+    this.player_y = Math.min(this.player_y + 1, this.height - 1);
+
+    if (this.get_special_tile(this.player_x, this.player_y)) {
+        this.get_special_tile(this.player_x, this.player_y).action();
+    }
 }
 
 Map.prototype.move_left = function() {
-    this.player_x = this.player_x - 1;
+    this.player_x = Math.max(this.player_x - 1, 0);
+
+    if (this.get_special_tile(this.player_x, this.player_y)) {
+        this.get_special_tile(this.player_x, this.player_y).action();
+    }
 }
 
 Map.prototype.move_right = function() {
-    this.player_x = this.player_x + 1;
+    this.player_x = Math.min(this.player_x + 1, this.width - 1);
+
+    if (this.get_special_tile(this.player_x, this.player_y)) {
+        this.get_special_tile(this.player_x, this.player_y).action();
+    }
 }
 
 
 //the special tile object, as a template for special tiles
-function Special_tile(name, action) {
+function Special_tile(name, func, object_name) {
     this.name = name;
-    
-    if (action == undefined) {
+    this.func_arguments = [];
+
+    for (var a = 3; a < arguments.length; a = a + 1) {
+        this.func_arguments.push(arguments[a]);
+    }
+
+    if (func == undefined) {
         this.action = this.no_action;
+    } else {
+        var func_string = object_name + "." + func.name + "(" + this.func_arguments.join(", ") + ");";
+        this.action = new Function(func_string);
     }
 }
 

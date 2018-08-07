@@ -45,8 +45,6 @@ var game_state_manager = {
         }, function() {
             this.current_map.move_right();
             MPM.display_map(this.current_map);
-        }, function() {
-
         });
 
         Engine.log("starting game...");

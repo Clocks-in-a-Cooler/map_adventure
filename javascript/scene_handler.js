@@ -4,8 +4,8 @@ var scene_handler = {
 
     create_scene: function(scene_obj) {
         //check if a scene already exists
-        if (document.getElementById('scene') || document.getElementById('overlay')) {
-            throw new Error("a scene already exists!\nend it with SH.end_scene() before starting a new one!");
+        if (this.current_scene) {
+            throw new Error("a scene already exists! end it with SH.end_scene() before starting a new one!");
         }
 
         //create the overlay, defined in the css
