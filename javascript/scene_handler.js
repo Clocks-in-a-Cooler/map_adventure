@@ -2,7 +2,7 @@ var scene_handler = {
     current_scene: null,
     current_scene_obj: null,
 
-    create_scene: function (scene_obj) {
+    create_scene: function(scene_obj) {
         //check if a scene already exists
         if (document.getElementById('scene') || document.getElementById('overlay')) {
             throw new Error("a scene already exists!\nend it with SH.end_scene() before starting a new one!");
@@ -51,39 +51,6 @@ var scene_handler = {
             buttons_panel.appendChild(buttons.shift());
         }
 
-        /*  IGNORE THE CODE BELOW. IT'S BUGGY!!!!!
-        for (var b = 0; b < buttons.length; b++) {
-            (function () {
-                var button = scene_obj['scenes']['start']['buttons'][buttons[b]];
-                var b_element = document.createElement('button');
-                var onclick_att = document.createAttribute('onclick');
-
-                //build the function for the onclick
-                var onclick_f;
-                if (button['next_scene'] == 'end') {
-                    onclick_att.value = 'SH.end_scene();'
-                } else {
-                    //build a function, yes, from scratch
-                    var func = "";
-                    var next_scenes = Object.getOwnPropertyNames(button['next_scene']);
-                    var threshold = 0;
-                    while (next_scenes.length > 0) {
-                        var chanse = button[next_scenes[0]];
-                        func = "if (chance >= " + threshold + ") SH.next_scene(SH.current_scene_obj['scenes']['" + next_scenes.pop() + "']); " + func;
-                        threshold += chanse;
-                    }
-
-                    func = "var chance = Math.random(); " + func;
-
-                    onclick_att.value = func;
-                }
-
-                b_element.innerHTML = buttons[b];
-                b_element.setAttributeNode(onclick_att);
-                buttons_panel.appendChild(b_element);
-            })();
-        } */
-
         scene.appendChild(buttons_panel);
 
         game.appendChild(scene);
@@ -106,6 +73,7 @@ var scene_handler = {
         while (texts.length > 0) {
             this.current_scene.childNodes[2].innerHTML += texts.shift() + "<br />";
         }
+        //this.current_scene.childNodes[2] = this.create_text(next['text']);
 
         //reset the buttons
         this.current_scene.childNodes[3].innerHTML = "";
@@ -158,7 +126,18 @@ var scene_handler = {
         }
 
         return b;
-    }
+    },
+
+    create_text: function(text) {
+        var t = text.split("\n");
+        var tn = document.createElement('P');
+
+        while (t.length > 0) {
+            tn.innerHTML = tn.innerHTML + t.shift() + "<br />";
+        }
+
+        return tn;
+    },
 };
 
 var SH = scene_handler;

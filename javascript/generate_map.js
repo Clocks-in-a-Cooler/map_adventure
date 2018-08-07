@@ -42,11 +42,12 @@ function generate_prison_mine_map(width, height) {
         num_of_ores--;
     }
 
-    //the mine entrance
+    //the mine entrance, will be at 69, 35 on a 70 * 70 map.
     var mine_entrance_x = width - 1;
     var mine_entrance_y = Math.floor(height / 2);
 
     m.set_tile(mine_entrance_x, mine_entrance_y, MAP_TILES.MINE_ENTRANCE);
+    m.place_player(mine_entrance_x, mine_entrance_y);
 
     return m;
 }

@@ -29,9 +29,27 @@ var game_state_manager = {
     },
 
     start_game: function() {
-        this.maps['prison mine map'] = generate_prison_map(70, 70);
+        this.maps['prison mine map'] = generate_prison_mine_map(70, 70);
         MPM.display_map(this.maps['prison mine map']);
+        this.set_current_map('prison mine map');
 
+        EH.enable_map(function() {
+            this.current_map.move_up();
+            MPM.display_map(this.current_map);
+        }, function() {
+            this.current_map.move_down();
+            MPM.display_map(this.current_map);
+        }, function() {
+            this.current_map.move_left();
+            MPM.display_map(this.current_map);
+        }, function() {
+            this.current_map.move_right();
+            MPM.display_map(this.current_map);
+        }, function() {
+
+        });
+
+        Engine.log("starting game...");
         Engine.notify('prison mine.');
     },
 };

@@ -3,13 +3,16 @@
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="css/html_style.css" />
+        <!-- link: https://clocks-in-a-cooler.github.io/map_adventure/ -->
     </head>
 
     <body>
         <!-- scripts, in alphabetical order -->
         <script src="javascript/character.js"></script>
         <script src="javascript/engine.js"></script>
+        <script src="javascript/event_handler.js"></script>
         <script src="javascript/generate_map.js"></script>
+        <script src="javascript/game_state.js"></script>
         <script src="javascript/map.js"></script>
         <script src="javascript/map_panel_manager.js"></script>
         <script src="javascript/map_tiles.js"></script>
@@ -38,6 +41,8 @@
                 var message_panel = document.getElementById("messages");
                 var map_panel = document.getElementById("map_panel");
 
+                EH.init();
+
                 function random_number(start, end) {
                     var multiplier = Math.abs((start - end));
                     var adder = Math.min(start, end);
@@ -64,8 +69,8 @@
 
                 function button_click() {
                     Engine.notify("something has happened.");
-
-                    MPM.display_map(generate_prison_mine_map(70, 70));
+                    GSM.start_game();
+                    //MPM.display_map(generate_prison_mine_map(70, 70));
                 }
 
                 Engine.notify("Alternatively, click the button.");
