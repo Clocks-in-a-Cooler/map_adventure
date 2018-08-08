@@ -43,8 +43,17 @@ var scene_handler = {
         }
         scene.appendChild(scene_text);
 
-        //finish the buttons part, very clunky
+        //finished the buttons part, very clunky
         var buttons_panel = document.createElement('div');
+
+        //loooooooooooooooooooooooooooooooooooooooot!
+        if (scene_obj['scenes']['start']['loot']) {
+            var loot_buttons = this.generate_loot(scene_obj['scenes']['start']['loot']);
+
+            while (loot_buttons.length > 0) {
+                buttons_panel.appendChild(loot_buttons.shift());
+            }
+        }
         var buttons = SH.create_buttons(scene_obj['scenes']['start']['buttons']);
 
         while (buttons.length > 0) {
@@ -77,6 +86,14 @@ var scene_handler = {
 
         //reset the buttons
         this.current_scene.childNodes[3].innerHTML = "";
+
+        if (next['loot']) {
+            var loot_buttons = this.generate_loot(next['loot']);
+
+            while (loot_buttons.length > 0) {
+                this.current_scene.childNodes[2].appendChild(loot_buttons.shift());
+            }
+        }
         
         var buttons = SH.create_buttons(next['buttons']);
 
@@ -133,28 +150,36 @@ var scene_handler = {
         var loot_names = Object.getOwnPropertyNames(loot);
 
         while (loot_names.length > 0) {
-            if (Math.random() > loot(loot_names[0]).chance) {
-                loot_names.pop();
+            if (Math.random() > loot[loot_names[0]].chance) {
+                loot_names.shift();
                 continue; //the player doesn't deserve the prize this time. sorry.
             }
 
             var name = loot_names[0];
-            var number = random_number(loot(loot_names[0]).min, loot(loot_names[0]).max);
-
-            var onclick = document.createAttribute('onclick');
-            onclick = (function() {
-                //dynamically generating the loot thing
-                var string = "var num_of_" + name + " = " + number + ";";
-                string += "";
-                //finish!!!!!!!
-            })();
+            var number = random_number(loot[loot_names[0]].min, loot[loot_names[0]].max);
 
             var loot_button = document.createElement('button');
             loot_button.innerHTML = name;
-            loot_button.setAttributeNode(onclick);
+            loot_button.addEventListener("mousedown", (function() {
+                var num = number;
+                var item_name = name;
+                
+                return function(event) {
+                    IPM.add_item(item_name, 1);
+                    num -= 1;
+
+                    if (num == 0) {
+                        this.disabled = true;
+                    }
+                };
+            })());
+
+            loot_names.shift();
 
             loot_buttons.push(loot_button);
         }
+
+        return loot_buttons;
     },
 
     create_text: function(text) {

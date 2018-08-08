@@ -149,6 +149,11 @@ button:hover {
     text-decoration: underline;
 }
 
+button:disabled, button[disabled] {
+    border-color: #999999;
+    color: #999999;
+}
+
 a:link {
     text-decoration: none;
     color: #999999;

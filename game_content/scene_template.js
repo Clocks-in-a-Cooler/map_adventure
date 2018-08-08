@@ -40,7 +40,19 @@ var scene_template = {
         },
 
         'scene_2': {
-            'text': 'scene 2. you had a 40% chance of getting this one.',
+            'text': 'scene 2. you had a 40% chance of getting this one. \nas a reward, have some cucumber seeds.',
+            'loot': {
+                'cucumber seeds': {
+                    min: 5,
+                    max: 19,
+                    chance: 1,
+                },
+                'tomato seeds': {
+                    min: 1,
+                    max: 5,
+                    chance: 0.1,
+                },
+            },
             'buttons': {
                 'end; I am running out of scenes!!': {
                     'tooltip': 'end the demo, because I can\'t make anymore scenes!',
