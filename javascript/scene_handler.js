@@ -128,6 +128,35 @@ var scene_handler = {
         return b;
     },
 
+    generate_loot: function(loot) {
+        var loot_buttons = [];
+        var loot_names = Object.getOwnPropertyNames(loot);
+
+        while (loot_names.length > 0) {
+            if (Math.random() > loot(loot_names[0]).chance) {
+                loot_names.pop();
+                continue; //the player doesn't deserve the prize this time. sorry.
+            }
+
+            var name = loot_names[0];
+            var number = random_number(loot(loot_names[0]).min, loot(loot_names[0]).max);
+
+            var onclick = document.createAttribute('onclick');
+            onclick = (function() {
+                //dynamically generating the loot thing
+                var string = "var num_of_" + name + " = " + number + ";";
+                string += "";
+                //finish!!!!!!!
+            })();
+
+            var loot_button = document.createElement('button');
+            loot_button.innerHTML = name;
+            loot_button.setAttributeNode(onclick);
+
+            loot_buttons.push(loot_button);
+        }
+    },
+
     create_text: function(text) {
         var t = text.split("\n");
         var tn = document.createElement('P');

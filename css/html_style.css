@@ -37,7 +37,10 @@ div#inventory {
 div.inventory_item {
     display: inline-block;
     padding: 5px;
-    margin: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-right: 0px;
     overflow: hidden;
     
     border-color: black;
@@ -129,7 +132,9 @@ div#scene {
 button {
     /* a button */
     background-color: white;
-    margin: 10px;
+    margin: 5px;
+
+    display: inline-block;
 
     border-style: solid;
     border-width: 1px;

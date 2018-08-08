@@ -1,5 +1,5 @@
 //a template for scenes, not really for use. use as a guide
-//based on ADR's way of doing it
+//based on ADR's way of doing it: https://github.com/doublespeakgames/adarkroom/blob/master/script/events/setpieces.js
 //probably the a functional prgrammer's worst nightmare: object-ception!
 //it's also my worst nightmare! see scene_handler.js for details!
 
