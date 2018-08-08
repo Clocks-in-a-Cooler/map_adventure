@@ -1,5 +1,5 @@
 var Engine = {
-    _log: true,
+    _log: false,
 
     log: function(msg) {
         if (this._log) {
