@@ -195,3 +195,58 @@ var scene_handler = {
 };
 
 var SH = scene_handler;
+
+// UNDER CONSTRUCTION. DANGER due to THE IIFES
+var scene_handler2 = (function() {
+    //all of these variables here aren't visible to the outside world
+    var current_scene;
+    var current_scene_obj;
+
+    var create_overlay = function() {
+        var overlay = document.createElement('div');
+
+        var id_att = document.createAttribute('id');
+        id_att.value = 'overlay';
+        overlay.setAttributeNode(id_att);
+
+        return overlay;
+    }
+
+    var create_title = function(title) {
+        var title_node = document.createElement('p');
+        title_node.innerHTML = title;
+
+        return title_node;
+    };
+
+    var create_text_node = function(text) {
+        var lines = text.split('\n');
+        var text_node = document.createElement('p');
+
+        while (lines.length > 0) {
+            text_node.innerHTML = text_node.innerHTML + lines.shift() + "<br />";
+        }
+
+        return text_node;
+    };
+
+    //looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooot!
+    var generate_loot = function(loot) {
+
+    };
+
+    var create_buttons = function(buttons) {
+
+    };
+
+    //gotta make sure that the methods used by the outside world stay the same
+    return {
+        create_scene: function(scene_obj) {
+            if (current_scene) {
+                throw new Error("a scene already exists! end it with SH.end_scene() before starting a new one!");
+            }
+
+            //finish
+        },
+    }
+})();

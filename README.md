@@ -1,9 +1,9 @@
 # Map Adventure
 by clocks-in-a-cooler
 
-> *something has happened...*
+> something has happened...
 
-Map Adventure is a crude Javascript game. You can enjoy it [here](clocks-in-a-cooler.github.io/map_adventure).
+Map Adventure is a *crude* Javascript game. You can enjoy it [here](clocks-in-a-cooler.github.io/map_adventure).
 
 Features to-do list (featuritis notwithstanding):
 
