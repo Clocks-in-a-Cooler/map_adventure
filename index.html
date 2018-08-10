@@ -77,6 +77,59 @@
                     return element;
                 }
 
+                function deep_copy(obj) {
+                    var properties = Object.getOwnPropertyNames(obj);
+                    var new_obj = {};
+
+                    while (properties.length > 0) {
+                        if (typeof obj[properties[0]] == "object") {
+                            new_obj[properties[0]] = deep_copy(obj[properties[0]]);
+                        } else {
+                            new_obj[properties[0]] = obj[properties[0]];
+                        }
+
+                        properties.shift();
+                    }
+
+                    return new_obj;
+                }
+
+                Object.prototype.deep_equal = function(that) {
+                    if (typeof that != "object") {
+                        //fail safe, because idiots exist
+                        return false;
+                    }
+
+                    var properties = Object.getOwnPropertyNames(this);
+                    var equal = true;
+
+                    while (properties.length > 0 && equal == true) {
+                        if (typeof this[properties[0]] == "object") {
+                            equal = (this[properties[0]].deep_equal(that[properties[0]]));
+                        } else {
+                            equal = (this[properties[0]] == that[properties[0]]);
+                        }
+
+                        properties.shift();
+                    }
+
+                    return equal;
+                };
+
+                Array.prototype.deep_equal = function(that) {
+                    if (!Array.isArray(that)) {
+                        return false;
+                    }
+
+                    for (var i = 0; i < Math.max(this.length, that.length); i++) {
+                        if (this[i] !== that[i]) {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                };
+
                 function button_click() {
                     Engine.notify("something has happened.");
                     GSM.start_game();
