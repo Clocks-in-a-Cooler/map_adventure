@@ -1,9 +1,9 @@
-function Map(string, width, height) {
+function Map(string, width, height, seperator) {
 
     string = string.split("\n").join(""); //removes line breaks
     
     if (string.length == width * height) {
-        this.map_array = string.split("");
+        this.map_array = string.split((seperator || ""));
         this.width = width;
         this.height = height;
     } else {
@@ -11,12 +11,14 @@ function Map(string, width, height) {
     }
 
     this.special_tiles = []; //for special tiles
+    this.mask = [];
 
     this.player_x = null;
     this.player_y = null;
 
-    for (var i = 0; i < width * height; i = i + 1) {
-        this.special_tiles[i] = null; //start out with no special tiles, for now.
+    while(this.special_tiles.length <= width * height) {
+        this.special_tiles.push(null);
+        this.mask.push(false);
     }
 }
 
@@ -29,8 +31,13 @@ Map.prototype.stringify = function() {
         for (var b = 0; b < this.width; b = b + 1) {
             if (b == this.player_x && a == this.player_y) {
                 stringified_map = stringified_map + MAP_TILES.PLAYER;
-            } else {
+                continue;
+            }
+            
+            if (this.mask[this.get_tile_pos(b, a)]) {
                 stringified_map = stringified_map + this.get_tile(b, a);
+            } else {
+                stringified_map = stringified_map + MAP_TILES.BLANK;
             }
         }
 
@@ -102,6 +109,8 @@ Map.prototype.remove_special_tile = function(width, height) {
 Map.prototype.place_player = function(x, y) {
     this.player_x = x;
     this.player_y = y;
+
+    this.unmask(this.player_x, this.player_y, GSM.LIGHT_RADIUS);
 }
 
 Map.prototype.move_up = function() {
@@ -110,6 +119,8 @@ Map.prototype.move_up = function() {
     if (this.get_special_tile(this.player_x, this.player_y)) {
         this.get_special_tile(this.player_x, this.player_y).action();
     }
+
+    this.unmask(this.player_x, this.player_y, GSM.LIGHT_RADIUS);
 }
 
 Map.prototype.move_down = function() {
@@ -118,6 +129,8 @@ Map.prototype.move_down = function() {
     if (this.get_special_tile(this.player_x, this.player_y)) {
         this.get_special_tile(this.player_x, this.player_y).action();
     }
+
+    this.unmask(this.player_x, this.player_y, GSM.LIGHT_RADIUS);
 }
 
 Map.prototype.move_left = function() {
@@ -126,6 +139,8 @@ Map.prototype.move_left = function() {
     if (this.get_special_tile(this.player_x, this.player_y)) {
         this.get_special_tile(this.player_x, this.player_y).action();
     }
+
+    this.unmask(this.player_x, this.player_y, GSM.LIGHT_RADIUS);
 }
 
 Map.prototype.move_right = function() {
@@ -133,6 +148,39 @@ Map.prototype.move_right = function() {
 
     if (this.get_special_tile(this.player_x, this.player_y)) {
         this.get_special_tile(this.player_x, this.player_y).action();
+    }
+
+    this.unmask(this.player_x, this.player_y, GSM.LIGHT_RADIUS);
+}
+
+Map.prototype.unmask = function(x, y, radius) {
+    //unmasks a diamond on the map, centered around (x, y)
+    if (!radius) {
+        radius = 2;
+    }
+
+    var top_left = {
+        x: Math.max(x - radius, 0),
+        y: Math.max(y - radius, 0),
+    };
+
+    var bottom_right = {
+        x: Math.min(x + radius, this.width - 1),
+        y: Math.min(y + radius, this.height - 1),
+    };
+
+    for (var a = top_left.y; a <= bottom_right.y; a++) {
+        for (var b = top_left.x; b <= bottom_right.x; b++) {
+            if (this.mask[this.get_tile_pos(b, a)]) {
+                continue;
+            }
+
+            if (this.get_euclidean_distance(x, y, b, a) > radius) {
+                ;
+            } else {
+                this.mask[this.get_tile_pos(b, a)] = true;
+            }
+        }
     }
 }
 
