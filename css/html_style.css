@@ -147,11 +147,13 @@ button {
 
 button:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 button:disabled, button[disabled] {
     border-color: #999999;
     color: #999999;
+    cursor: not-allowed;
 }
 
 a:link {
