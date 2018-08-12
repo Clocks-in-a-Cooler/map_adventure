@@ -3,8 +3,8 @@ var game_state_manager = {
     //not yet included in index.html.
 
     maps: {},  //holds the maps
-
     current_map: null,
+    LIGHT_RADIUS: 2,
 
     init: function() {
 

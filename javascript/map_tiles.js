@@ -1,5 +1,5 @@
 var MAP_TILES = { //subject to change!
-    BLANK: "█",
+    BLANK: " ",
     PLAYER: "§",
     FARM: "A",
     OUTPOST: "#",
