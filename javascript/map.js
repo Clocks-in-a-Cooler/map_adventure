@@ -160,13 +160,13 @@ Map.prototype.unmask = function(x, y, radius) {
     }
 
     var top_left = {
-        x: Math.max(x - radius, 0),
-        y: Math.max(y - radius, 0),
+        x: Math.max(x - radius - 1, 0),
+        y: Math.max(y - radius - 1, 0),
     };
 
     var bottom_right = {
-        x: Math.min(x + radius, this.width - 1),
-        y: Math.min(y + radius, this.height - 1),
+        x: Math.min(x + radius + 1, this.width - 1),
+        y: Math.min(y + radius + 1, this.height - 1),
     };
 
     for (var a = top_left.y; a <= bottom_right.y; a++) {
@@ -175,7 +175,7 @@ Map.prototype.unmask = function(x, y, radius) {
                 continue;
             }
 
-            if (this.get_euclidean_distance(x, y, b, a) > radius) {
+            if (this.get_taxicab_distance(x, y, b, a) > radius) {
                 ;
             } else {
                 this.mask[this.get_tile_pos(b, a)] = true;

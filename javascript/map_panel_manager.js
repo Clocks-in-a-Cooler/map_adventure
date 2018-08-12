@@ -23,6 +23,8 @@ var map_panel_manager = {
                 //style landmarks
                 if (this.is_landmark(tile)) {
                     line.innerHTML += "<span style='color:black; font-weight: bold;'>" + tile + "</span>";
+                } else if (tile == MAP_TILES.BLANK) {
+                    line.innerHTML += "&#160;"
                 } else {
                     line.innerHTML += tile;
                 }

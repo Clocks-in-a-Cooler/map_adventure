@@ -151,6 +151,7 @@ button:hover {
 }
 
 button:disabled, button[disabled] {
+    text-decoration: none;
     border-color: #999999;
     color: #999999;
     cursor: not-allowed;
