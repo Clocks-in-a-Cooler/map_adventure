@@ -20,12 +20,8 @@ var game_state_manager = {
         }
     },
 
-    update_map: function() {
-        MPM.display_map(this.current_map);
-    },
-
     set_current_map: function(name) {
-        current_map = this.maps[name];
+        this.current_map = this.maps[name];
     },
 
     start_game: function() {
@@ -34,21 +30,41 @@ var game_state_manager = {
         this.set_current_map('prison mine map');
 
         EH.enable_map(function() {
-            this.current_map.move_up();
-            MPM.display_map(this.current_map);
+            GSM.current_map.move_up();
+            MPM.display_map(GSM.current_map);
         }, function() {
-            this.current_map.move_down();
-            MPM.display_map(this.current_map);
+            GSM.current_map.move_down();
+            MPM.display_map(GSM.current_map);
         }, function() {
-            this.current_map.move_left();
-            MPM.display_map(this.current_map);
+            GSM.current_map.move_left();
+            MPM.display_map(GSM.current_map);
         }, function() {
-            this.current_map.move_right();
-            MPM.display_map(this.current_map);
+            GSM.current_map.move_right();
+            MPM.display_map(GSM.current_map);
         });
 
         Engine.log("starting game...");
         Engine.notify('prison mine.');
+    },
+
+    deactivate_map_handlers: function() {
+        EH.disable_map();
+    },
+
+    activate_map_handlers: function() {
+        EH.enable_map(function() {
+            GSM.current_map.move_up();
+            MPM.display_map(GSM.current_map);
+        }, function() {
+            GSM.current_map.move_down();
+            MPM.display_map(GSM.current_map);
+        }, function() {
+            GSM.current_map.move_left();
+            MPM.display_map(GSM.current_map);
+        }, function() {
+            GSM.current_map.move_right();
+            MPM.display_map(GSM.current_map);
+        });
     },
 };
 
