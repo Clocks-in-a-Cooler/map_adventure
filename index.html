@@ -20,26 +20,26 @@
         <script src="javascript/scene_handler.js"></script>
 
         <!-- content, in alphabetical order -->
-        <script src="game_content/prison_mine_ore.js"></script>        
+        <script src="game_content/prison_mine_ore.js"></script>
         <script src="game_content/scene_template.js"></script>
 
         <div id=game>
             <div id="messages">
             </div>
-            
+
             <div id="inventory">
-                <!-- this div is for displaying the inventory 
+                <!-- this div is for displaying the inventory
                     individual items will be displayed each as a <div class="inventory_item"
                     this will probably be handled by a seperate module. (fun!) -->
             </div>
-            
+
             <div id="map_panel">
                 <button onclick="button_click();">something will happen</button>
             </div>
         </div>
 
         <div id="links">
-            <p style="color: #999999; text-decoration: none;">version alpha 0.2.1</p> 
+            <p style="color: #999999; text-decoration: none;">version alpha 0.2.3</p> 
             <br />
             <a target="_blank" href="https://www.github.com/clocks-in-a-cooler/map_adventure">github</a>
             <br />
@@ -58,10 +58,10 @@
                 function random_number(start, end) {
                     var multiplier = Math.abs((start - end));
                     var adder = Math.min(start, end);
-                    
+
                     return Math.floor(Math.random() * multiplier + adder);
                 }
-                
+
                 function create_element(tag, attributes) {
                     var element = document.createElement(tag);
 
