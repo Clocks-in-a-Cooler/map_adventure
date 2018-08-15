@@ -56,7 +56,7 @@ var scene_handler = (function() {
             loot_button.addEventListener("mousedown", (function() {
                 var num = number;
                 var item_name = name;
-                
+
                 return function(event) {
                     IPM.add_item(item_name, 1);
                     num -= 1;
@@ -136,6 +136,9 @@ var scene_handler = (function() {
 
             document.body.appendChild(create_overlay());
 
+            Engine.log('deactivating map handlers...');
+            GSM.deactivate_map_handlers();
+
             //create the scene
             this.current_scene = document.createElement('div');
             var scene_att = document.createAttribute('id');
@@ -158,6 +161,9 @@ var scene_handler = (function() {
             document.body.removeChild(document.getElementById('overlay'));
             document.body.removeChild(document.getElementById('scene'));
             Engine.log("scene ended.");
+
+            Engine.log('reactivating map handlers...');
+            GSM.activate_map_handlers();
         },
 
         create_scene_content: function(scene) {
