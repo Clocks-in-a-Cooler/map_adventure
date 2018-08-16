@@ -3,6 +3,10 @@ var p_m_ore_scene = {
     'scenes': {
         'start': {
             'text': 'there\'s some ore here.',
+            'onload': function() {
+                GSM.current_map.remove_special_tile(GSM.current_map.player_x, GSM.current_map.player_y);
+                Engine.log("removed special tile at (" + GSM.current_map.player_x + ", " + GSM.current_map.player_y + ")");
+            },
 
             'loot': {
                 'ore': {

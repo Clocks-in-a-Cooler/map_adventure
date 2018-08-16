@@ -14,7 +14,7 @@ var scene_handler = (function() {
     }
 
     var create_title = function(title) {
-        Engine.log("creating scene " + title + "...");
+        Engine.log("creating scene '" + title + "'...");
 
         var title_node = document.createElement('p');
         title_node.innerHTML = title;
@@ -171,6 +171,10 @@ var scene_handler = (function() {
             this.current_scene.appendChild(document.createElement('div'));
 
             var buttons_panel = this.current_scene.childNodes[3];
+
+            if (scene['onload']) {
+                scene['onload']();
+            }
 
             if (scene['loot']) {
                 var loots = generate_loot(scene['loot']);
