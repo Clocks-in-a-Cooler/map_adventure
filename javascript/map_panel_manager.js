@@ -17,10 +17,18 @@ var map_panel_manager = {
                 tile = tiles.shift(); //remove a tile
 
                 //style landmarks
-                if (this.is_landmark(tile)) {
-                    line.innerHTML += "<span style='color:black; font-weight: bold;'>" + tile + "</span>";
-                } else if (tile == MAP_TILES.BLANK) {
+                if (tile == MAP_TILES.BLANK) {
                     line.innerHTML += "&#160;"
+                } else if ((function(x, y, tile) {
+                    if (tile == MAP_TILES.PLAYER) {
+                        return true;
+                    } else if (map.get_special_tile(x, y)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                })(rows[0].length - tiles.length - 1, rowsleft, tile)) {
+                    line.innerHTML += "<span style='color:black; font-weight: bold;'>" + tile + "</span>";
                 } else {
                     line.innerHTML += tile;
                 }
@@ -33,22 +41,6 @@ var map_panel_manager = {
             map_panel.appendChild(line);
             rowsleft = rowsleft + 1;
         }
-    },
-
-    is_landmark: function(tile) {
-        if (tile == MAP_TILES.PLAYER) {
-            return true;
-        }
-
-        if (tile == MAP_TILES.MYSTERY) {
-            return true;
-        }
-
-        if (tile == MAP_TILES.MARSH) {
-            return false;
-        }
-
-        return /\w/.test(tile);
     },
 }
 

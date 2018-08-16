@@ -26,11 +26,11 @@ div#inventory {
     left: 220px;
     width: 720px;
     height: 90px;
-    
+
     border-color: black;
     border-style: solid;
     border-width: 1px;
-    
+
     overflow-y: scroll;
 }
 
@@ -42,7 +42,7 @@ div.inventory_item {
     margin-bottom: 0px;
     margin-right: 0px;
     overflow: hidden;
-    
+
     border-color: black;
     border-style: solid;
     border-width: 1px;
@@ -76,7 +76,23 @@ div#map_panel {
     color: #999999;
 
     overflow: hidden;
-   
+
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+}
+
+div.mini_map {
+    width: auto;
+    height: auto;
+    padding: 5px;
+
+    line-height: 10px;
+    letter-spacing: 1px;
+    font-family: "Courier New", monospace;
+    font-size: 11pt;
+    color: #999999;
+
     border-color: black;
     border-style: solid;
     border-width: 1px;
@@ -115,7 +131,7 @@ div#overlay {
     opacity: 0.75; /* partially transparent */
 }
 
-div#scene {  
+div#scene {
     /* adjust the positioning if necessary */
     position: fixed;
     top: 200px;
@@ -133,6 +149,7 @@ button {
     /* a button */
     background-color: white;
     margin: 5px;
+    padding: 5px;
 
     display: inline-block;
 
@@ -140,7 +157,9 @@ button {
     border-width: 1px;
     border-color: black;
     width: 150px;
-    height: 50px;
+    height: auto;
+    
+    float: top;
 
     overflow: hidden;
 }
