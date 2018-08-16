@@ -38,7 +38,9 @@ function generate_prison_mine_map(width, height) {
         }
 
         m.set_tile(ore_x, ore_y, MAP_TILES.ORE);
-        var ore_special_tile = new Special_tile("ore", SH.create_scene, "SH", "p_m_ore_scene");
+        var ore_special_tile = new Special_tile("ore", function() {
+            SH.create_scene(p_m_ore_scene);
+        });
         m.set_special_tile(ore_x, ore_y, ore_special_tile);
 
         num_of_ores--;

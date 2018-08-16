@@ -1,7 +1,7 @@
 function Map(string, width, height, seperator) {
 
     string = string.split("\n").join(""); //removes line breaks
-    
+
     if (string.length == width * height) {
         this.map_array = string.split((seperator || ""));
         this.width = width;
@@ -33,7 +33,7 @@ Map.prototype.stringify = function() {
                 stringified_map = stringified_map + MAP_TILES.PLAYER;
                 continue;
             }
-            
+
             if (this.mask[this.get_tile_pos(b, a)]) {
                 stringified_map = stringified_map + this.get_tile(b, a);
             } else {
@@ -186,19 +186,13 @@ Map.prototype.unmask = function(x, y, radius) {
 
 
 //the special tile object, as a template for special tiles
-function Special_tile(name, func, object_name) {
+function Special_tile(name, action) {
     this.name = name;
-    this.func_arguments = [];
 
-    for (var a = 3; a < arguments.length; a = a + 1) {
-        this.func_arguments.push(arguments[a]);
-    }
-
-    if (func == undefined) {
+    if (action == undefined) {
         this.action = this.no_action;
     } else {
-        var func_string = object_name + "." + func.name + "(" + this.func_arguments.join(", ") + ");";
-        this.action = new Function(func_string);
+        this.action = action;
     }
 }
 
