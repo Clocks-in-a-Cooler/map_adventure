@@ -145,6 +145,12 @@ div#scene {
     padding: 20px;
 }
 
+div#tooltip {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+}
+
 button {
     /* a button */
     background-color: white;
@@ -158,8 +164,8 @@ button {
     border-color: black;
     width: 150px;
     height: auto;
-    
-    float: top;
+
+    vertical-align: top;
 
     overflow: hidden;
 }
