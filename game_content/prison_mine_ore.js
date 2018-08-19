@@ -33,6 +33,9 @@ var p_m_leave_scene = {
             'text': 'there\'s some commotion. the guards are rounding up some of you prisoners for some reason.',
             'onload': function() {
                 Engine.log('prisoner is escaping!');
+                GSM.add_map(generate_forest_map(70, 70), 'forest map');
+
+                GSM.set_current_map('forest_map');
             },
             'buttons': {
                 'obey the guards': {
@@ -46,8 +49,15 @@ var p_m_leave_scene = {
             'text': 'they crowd all of you onto a cart. through the slats, you watch the outside world rumble past.',
             'onload': function() {
                 Engine.log('rendering map...');
-                //finish the functionality for this... SH.load_mini_map();
+
+                var iterations = random_number(10, 35);
+
+                setTimeOut(function() {
+                    //finish, making the minimap move
+                }, 1500)
             },
+
+            'mini_map': GSM.current_map.get_sub_map(65, 21, 69, 26),
         },
     },
 }
