@@ -51,7 +51,34 @@ function generate_prison_mine_map(width, height) {
     var mine_entrance_y = Math.floor(height / 2);
 
     m.set_tile(mine_entrance_x, mine_entrance_y, MAP_TILES.MINE_ENTRANCE);
+    m.set_special_tile(mine_entrance_x, mine_entrance_y, new Special_tile("mine entrance", (function() {
+        var visits = 0;
+
+        return function() {
+            visits = visits + 1;
+
+            if (visits >= 5) {
+                SH.create_scene(p_m_leave_scene);
+            }
+
+            Engine.log('visits: ' + visits);
+        };
+    })()));
     m.place_player(mine_entrance_x, mine_entrance_y);
 
     return m;
+}
+
+function generate_forest_map(width, height) {
+    var f_map = generate_blank_map(width, height, MAP_TILES.FOREST);
+
+    (function() {
+        var path_row = Math.floor(height / 3);
+
+        for (var x = 0; x < f_map.width; x = x + 1) {
+            f_map.set_tile(x, path_row, MAP_TILES.PATH);
+        }
+    })();
+
+    return f_map;
 }

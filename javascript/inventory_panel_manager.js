@@ -17,8 +17,9 @@ var inventory_panel_manager = {
                 inventory_panel.removeChild(item);
             }
 
-            var a = item.innerHTML.split(' ');
-            item.innerHTML = a[0] + " " + this.items[name];
+            var index = item.innerHTML.search(/\d/);
+
+            item.innerHTML = item.innerHTML.slice(0, index) + this.items[name];
         } else {
             var inventory_item = (function() {
                 var i = document.createElement('div');

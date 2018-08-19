@@ -39,4 +39,6 @@ var Engine = {
     render_tooltip: function(node, text) {
         //finish the tooltip renderer
     },
+
+    //tooltips: https://stackoverflow.com/questions/2601097/how-to-get-the-mouse-position-without-events-without-moving-the-mouse, scroll down!
 }

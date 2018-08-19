@@ -38,7 +38,7 @@ var scene_handler = (function() {
     var generate_loot = function(loot) {
         Engine.log("generating loot...");
 
-        var loot_buttons = [];
+        var loot_divs = [];
         var loot_names = Object.getOwnPropertyNames(loot);
 
         while (loot_names.length > 0) {
@@ -50,8 +50,15 @@ var scene_handler = (function() {
             var name = loot_names[0];
             var number = random_number(loot[loot_names[0]].min, loot[loot_names[0]].max);
 
+            //create the parent element
+            var loot_div = document.createElement('div');
+            var att = document.createAttribute('class');
+            att.value = 'button_row';
+            loot_div.setAttributeNode(att);
+
             //create the button for getting the loot, one item at a time...
             var loot_button = document.createElement('button');
+            loot_div.appendChild(loot_button);
             loot_button.innerHTML = name + " " + "(" + number + ")";
             loot_button.addEventListener("mousedown", (function() {
                 var num = number;
@@ -65,16 +72,38 @@ var scene_handler = (function() {
 
                     if (num == 0) {
                         this.disabled = true;
+                        this.nextSibling.disabled = true;
                     }
+                };
+            })());
+
+            //create the "take all" button
+            var take_all = document.createElement('button');
+            loot_div.appendChild(take_all);
+            take_all.innerHTML = 'take all';
+            take_all.addEventListener("mousedown", (function() {
+                var num = number;
+                var item_name = name;
+
+                return function(event) {
+                    IPM.add_item(item_name, num);
+                    num = 0;
+
+                    this.disabled = true;
+
+                    //clear the other button and disable it too.
+                    //could've used previousSibling, but no. just to spite you.
+                    this.parentNode.childNodes[0].innerHTML = name + " (" + num + ")";
+                    this.parentNode.childNodes[0].disabled = true;
                 };
             })());
 
             loot_names.shift();
 
-            loot_buttons.push(loot_button);
+            loot_divs.push(loot_div);
         }
 
-        return loot_buttons;
+        return loot_divs;
     };
 
     var create_buttons = function(buttons) {
