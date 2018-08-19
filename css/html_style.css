@@ -66,6 +66,22 @@ div#links {
     padding: 10px;
 }
 
+div#items_box_wrapper {
+    position: fixed;
+    padding: 0px;
+    overflow: hidden;
+}
+
+div.items_box {
+    display: inline;
+    margin: 10px;
+    width: 320px;
+
+    border: 1px solid black;
+    padding: 20px;
+    overflow-y: scroll;
+}
+
 div#map_panel {
     /* the part that holds the map */
     position: absolute;

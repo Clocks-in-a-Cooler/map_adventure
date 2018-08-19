@@ -61,16 +61,13 @@ var scene_handler = (function() {
             loot_div.appendChild(loot_button);
             loot_button.innerHTML = name + " " + "(" + number + ")";
             loot_button.addEventListener("mousedown", (function() {
-                var num = number;
-                var item_name = name;
-
                 return function(event) {
-                    IPM.add_item(item_name, 1);
-                    num -= 1;
+                    IPM.add_item(name, 1);
+                    number -= 1;
 
-                    this.innerHTML = name + " " + "(" + num + ")";
+                    this.innerHTML = name + " " + "(" + number + ")";
 
-                    if (num == 0) {
+                    if (number == 0) {
                         this.disabled = true;
                         this.nextSibling.disabled = true;
                     }
@@ -82,18 +79,15 @@ var scene_handler = (function() {
             loot_div.appendChild(take_all);
             take_all.innerHTML = 'take all';
             take_all.addEventListener("mousedown", (function() {
-                var num = number;
-                var item_name = name;
-
                 return function(event) {
-                    IPM.add_item(item_name, num);
-                    num = 0;
+                    IPM.add_item(name, number);
+                    number = 0;
 
                     this.disabled = true;
 
                     //clear the other button and disable it too.
                     //could've used previousSibling, but no. just to spite you.
-                    this.parentNode.childNodes[0].innerHTML = name + " (" + num + ")";
+                    this.parentNode.childNodes[0].innerHTML = name + " (" + number + ")";
                     this.parentNode.childNodes[0].disabled = true;
                 };
             })());
