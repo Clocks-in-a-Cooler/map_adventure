@@ -35,6 +35,7 @@ var scene_handler = (function() {
     };
 
     //looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooot!
+    //gotta redo this!
     var generate_loot = function(loot) {
         Engine.log("generating loot...");
 
@@ -46,55 +47,8 @@ var scene_handler = (function() {
                 loot_names.shift();
                 continue; //the player doesn't deserve the prize this time. sorry.
             }
-
-            var name = loot_names[0];
-            var number = random_number(loot[loot_names[0]].min, loot[loot_names[0]].max);
-
-            //create the parent element
-            var loot_div = document.createElement('div');
-            var att = document.createAttribute('class');
-            att.value = 'button_row';
-            loot_div.setAttributeNode(att);
-
-            //create the button for getting the loot, one item at a time...
-            var loot_button = document.createElement('button');
-            loot_div.appendChild(loot_button);
-            loot_button.innerHTML = name + " " + "(" + number + ")";
-            loot_button.addEventListener("mousedown", (function() {
-                return function(event) {
-                    IPM.add_item(name, 1);
-                    number -= 1;
-
-                    this.innerHTML = name + " " + "(" + number + ")";
-
-                    if (number == 0) {
-                        this.disabled = true;
-                        this.nextSibling.disabled = true;
-                    }
-                };
-            })());
-
-            //create the "take all" button
-            var take_all = document.createElement('button');
-            loot_div.appendChild(take_all);
-            take_all.innerHTML = 'take all';
-            take_all.addEventListener("mousedown", (function() {
-                return function(event) {
-                    IPM.add_item(name, number);
-                    number = 0;
-
-                    this.disabled = true;
-
-                    //clear the other button and disable it too.
-                    //could've used previousSibling, but no. just to spite you.
-                    this.parentNode.childNodes[0].innerHTML = name + " (" + number + ")";
-                    this.parentNode.childNodes[0].disabled = true;
-                };
-            })());
-
+            loot_divs.push(create_item_button_row(loot_names[0], random_number(loot[loot_names[0]].min, loot[loot_names[0]].max)));
             loot_names.shift();
-
-            loot_divs.push(loot_div);
         }
 
         return loot_divs;
@@ -129,7 +83,7 @@ var scene_handler = (function() {
                     var chance = Math.random();
 
                     for (var i = 0; i < thresholds.length; i = i + 1) {
-                        if (chance > thresholds[i] && chance < (thresholds[i + 1] || 1)/**/) {
+                        if (chance > thresholds[i] && chance < (thresholds[i + 1] || 1)) {
                             Engine.log("got: " + chance + ", button leads to: '" + nexts[i] + "'...");
                             return function() {
                                 SH.next_scene(SH.current_scene_obj['scenes'][nexts[i]]);
@@ -143,6 +97,43 @@ var scene_handler = (function() {
         }
 
         return b;
+    };
+
+    var create_item_button_row = function(name, number) {
+        var button_div = document.createElement('div');
+        var class_att = document.createAttribute('class');
+        class_att.value = 'buttons_row';
+        button_div.setAttributeNode(class_att);
+
+        var item_button = document.createElement('button');
+        item_button.innerHTML = name + " (" + number + ")";
+        button_div.appendChild(item_button);
+        item_button.addEventListener("mousedown", function() {
+            IPM.add_item(name, 1);
+
+            number = number - 1;
+            this.innerHTML = name + " (" + number + ")";
+
+            if (number <= 0) {
+                this.nextSibling.disabled = true;
+                this.disabled = true;
+            }
+        });
+
+        var take_all_button = document.createElement('button');
+        take_all_button.innerHTML = "take all";
+        button_div.appendChild(take_all_button);
+        take_all_button.addEventListener('mousedown', function() {
+            IPM.add_item(name, number);
+
+            number = 0;
+
+            this.previousSibling.innerHTML = name + " (" + number + ")";
+            this.previousSibling.disabled = true;
+            this.disabled = true;
+        });
+
+        return button_div;
     };
 
     //gotta make sure that the methods used by the outside world stay the same
