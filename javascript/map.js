@@ -182,7 +182,13 @@ Map.prototype.unmask = function(x, y, radius) {
             }
         }
     }
-}
+};
+
+Map.prototype.unmask_all = function() {
+    for (var m = 0; m < this.mask.length; m = m + 1) {
+        this.mask[m] = true;
+    }
+};
 
 
 //the special tile object, as a template for special tiles
@@ -190,12 +196,10 @@ function Special_tile(name, action) {
     this.name = name;
 
     if (action == undefined) {
-        this.action = this.no_action;
+        this.action = function() {
+            //no action
+        };
     } else {
         this.action = action;
     }
 }
-
-Special_tile.prototype.no_action = function() {
-    //do nothing
-};

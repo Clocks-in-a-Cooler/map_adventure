@@ -85,6 +85,9 @@ var map_panel_manager = {
             panel.appendChild(line);
             rowsleft = rowsleft + 1;
         }
+        var att = document.createAttribute('class');
+        att.value = 'minimap';
+        panel.setAttributeNode(att);
 
         return panel;
     },

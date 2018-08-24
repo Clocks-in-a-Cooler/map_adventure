@@ -54,7 +54,7 @@ var p_m_leave_scene = {
                 Engine.log('prisoner is escaping!');
                 GSM.add_map(generate_forest_map(70, 70), 'forest map');
 
-                GSM.set_current_map('forest_map');
+                GSM.set_current_map('forest map');
             },
             'buttons': {
                 'obey the guards': {
@@ -78,7 +78,11 @@ var p_m_leave_scene = {
             },
 
             'mini_map': function() {
-                return GSM['forest_map'].get_sub_map(65, 21, 69, 26);
+                return (function() {
+                    var map = GSM['maps']['forest map'].get_sub_map(65, 21, 69, 26);
+                    map.unmask_all();
+                    return map;
+                })();
             },
         },
     },

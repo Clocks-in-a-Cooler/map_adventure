@@ -21,7 +21,7 @@ var game_state_manager = {
     },
 
     set_current_map: function(name) {
-        this.current_map = name;
+        this.current_map = this['maps'][name];
     },
 
     start_game: function() {
