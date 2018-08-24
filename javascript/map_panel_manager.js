@@ -44,7 +44,8 @@ var map_panel_manager = {
     },
 
     //basically everything above; I literally copy+pasted everything.
-    render_mini_map(map, panel) {
+    render_mini_map(map) {
+        var panel = document.createElement('div');
         panel.innerHTML = "";
 
         var rows = map.stringify().split('\n');
@@ -84,7 +85,9 @@ var map_panel_manager = {
             panel.appendChild(line);
             rowsleft = rowsleft + 1;
         }
-    }
+
+        return panel;
+    },
 }
 
 //alias

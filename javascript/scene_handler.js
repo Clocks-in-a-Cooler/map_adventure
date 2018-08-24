@@ -61,6 +61,15 @@ var scene_handler = (function() {
         var b = [];
 
         while (names.length > 0) {
+            if (typeof buttons[names[0]] == 'function') {
+                var button_element = document.createElement('button');
+                button_element.innerHTML = names[0];
+                button_element.addEventListener('mousedown', buttons[names[0]]);
+
+                b.push(button_element); names.shift();
+                continue;
+            }
+
             var button_element = document.createElement("button");
             button_element.innerHTML = names[0];
 
@@ -188,6 +197,10 @@ var scene_handler = (function() {
 
             if (scene['onload']) {
                 scene['onload']();
+            }
+
+            if (scene['mini_map']) {
+                this.current_scene.appendChild(MPM.render_mini_map(scene['mini_map']()));
             }
 
             if (scene['loot']) {

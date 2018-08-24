@@ -59,6 +59,8 @@ function generate_prison_mine_map(width, height) {
 
             if (visits >= 5) {
                 SH.create_scene(p_m_leave_scene);
+            } else {
+                SH.create_scene(p_m_deposit_scene);
             }
 
             Engine.log('visits: ' + visits);

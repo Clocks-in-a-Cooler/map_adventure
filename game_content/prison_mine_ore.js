@@ -27,6 +27,24 @@ var p_m_ore_scene = {
     },
 };
 
+var p_m_deposit_scene = {
+    'title': 'deposit ores',
+    'scenes': {
+        'start': {
+            'text': 'deposit your ores here.',
+            'buttons': {
+                'deposit ores': function() {
+                    Engine.log("player is depositing " + IPM.get_number('ore') + " ores...");
+                    IPM.remove_all('ore');
+                },
+                'leave': {
+                    'next_scene': 'end'
+                },
+            }
+        }
+    },
+};
+
 var p_m_leave_scene = {
     'title': 'out of the prison mine',
     'scenes': {
@@ -52,13 +70,16 @@ var p_m_leave_scene = {
                 Engine.log('rendering map...');
 
                 var iterations = random_number(10, 35);
+                Engine.log(iterations + " iterations...");
 
-                setTimeOut(function() {
+                setTimeout(function() {
                     //finish, making the minimap move
                 }, 1500)
             },
 
-            'mini_map': GSM.current_map.get_sub_map(65, 21, 69, 26),
+            'mini_map': function() {
+                return GSM['forest_map'].get_sub_map(65, 21, 69, 26);
+            },
         },
     },
-}
+};

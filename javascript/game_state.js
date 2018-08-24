@@ -11,7 +11,7 @@ var game_state_manager = {
     },
 
     add_map: function(new_map, name) {
-        this.maps[name] = new_maps;
+        this.maps[name] = new_map;
     },
 
     end_game: function(ending) {
@@ -21,7 +21,7 @@ var game_state_manager = {
     },
 
     set_current_map: function(name) {
-        this.current_map = this.maps[name];
+        this.current_map = name;
     },
 
     start_game: function() {

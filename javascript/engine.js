@@ -9,6 +9,7 @@ var Engine = {
 
     generate_save_code: function(game) {
         return btoa(JSON.stringify(game));
+        // https://stackoverflow.com/questions/14885995/how-to-get-a-functionss-body-as-string
     },
 
     notify: function(msg) {

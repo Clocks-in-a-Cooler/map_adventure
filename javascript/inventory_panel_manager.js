@@ -43,13 +43,25 @@ var inventory_panel_manager = {
     },
 
     remove_all: function(name) {
-        inventory_panel.removeChild(document.getElementById('item_' + name));
-        delete this.items[name];
+        if (this.items[name]) {
+            inventory_panel.removeChild(document.getElementById('item_' + name));
+            delete this.items[name];
+        } else {
+            return;
+        }
     },
 
     clear_inventory: function() {
         this.items = {};
         inventory_panel.innerHTML = "";
+    },
+
+    get_number: function(name) {
+        if (this.items[name] == undefined) {
+            return 0;
+        }
+
+        return this.items[name];
     }
 };
 
