@@ -27,7 +27,7 @@ Then, open up the Javascript console and try some of these:
 
     This adds three silicons to the inventory. You can enter also enter `IPM.add_item("silicon", -2);` to add -2 silicons to the inventory. (in other words, remove 2 silicons from the inventory).
 
-- __start a scene__ &mdash; `SH.start_scene(scene_template);`
+- __start a scene__ &mdash; `SH.create_scene(scene_template);`
 
     This line loads a scene. Click the buttons to interact with it. To see what the scene handler is doing, type `Engine._log = true;` to turn on logging.
 
