@@ -31,10 +31,17 @@ Then, open up the Javascript console and try some of these:
 
     This line loads a scene. Click the buttons to interact with it. To see what the scene handler is doing, type `Engine._log = true;` to turn on logging.
 
-- __write a message__ &mdash `Engine.notify("message from the javascript console!");`
+- __write a message__ &mdash; `Engine.notify("message from the javascript console!");`
 
     This line writes a message to the left side of the page.
 
 ## Using code from this project (aka _licensing_)
 
-Map adventure's code is in the public domain. So you can use any part of it in any way you want. There is no copyright, no conditions, and no warranty. Feel free to do whatever you want.
+> This is free and unencumbered software released into the public domain.
+>
+> Anyone is free to copy, modify, publish, use, compile, sell, or
+> distribute this software, either in source code form or as a compiled
+> binary, for any purpose, commercial or non-commercial, and by any
+> means.
+
+This means that Map adventure's code is in the public domain. So you can use any part of it in any way you want. There is no copyright, no conditions, and no warranty. Feel free to do whatever you want.
